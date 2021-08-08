@@ -25,7 +25,7 @@ class App extends Component {
           img: "https://m.media-amazon.com/images/M/MV5BNTgxNDZlODQtNDcwOC00NWQ5LTljNWMtMDhjY2U5YTUzMTc4XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg",
         },
       ],
-      starWars: []
+      starWars: [],
     };
   }
 
@@ -46,11 +46,12 @@ class App extends Component {
       <div className='App'>
         <header className="App-header">
           <h1>{this.state.Header}</h1>
-          {this.state.starWars.map(star => (
-            <h4 key={star.name}> {star.name}</h4>
-          ))}
-          <CardList name={this.state.starWars[1]} />
-          <button onClick={() => this.setState({ Header: "Movies" })}>Switch</button>
+          <CardList name={this.state.starWars[1]} >
+            {this.state.starWars.map(star => (
+              <h4 key={star.name}> {star.name}</h4>
+            ))}
+          </CardList>
+          <button onClick={() => this.setState({ Header: "Hello Star War" })}>Switch</button>
         </header>
       </div>
     );
