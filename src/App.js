@@ -46,10 +46,10 @@ class App extends Component {
       <div className='App'>
         <header className="App-header">
           <h1>{this.state.Header}</h1>
-          {this.state.showList.map(show => (
-            <h4 key={show.title}> {show.title}</h4>
+          {this.state.starWars.map(star => (
+            <h4 key={star.name}> {star.name}</h4>
           ))}
-          <CardList name={this.state.showList[1]} />
+          <CardList name={this.state.starWars[1]} />
           <button onClick={() => this.setState({ Header: "Movies" })}>Switch</button>
         </header>
       </div>
