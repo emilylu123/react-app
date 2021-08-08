@@ -1,29 +1,56 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { CardList } from './components/card-list/card-list.component'
+
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      string: 'Hello, World!'
+      Header: "My Favorite Shows",
+      showList: [
+        {
+          title: "Friends",
+          id: "tt0108778",
+          img: "https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg",
+        },
+        {
+          title: "The Big Bang Theory",
+          id: "tt0898266",
+          img: "https://m.media-amazon.com/images/M/MV5BY2FmZTY5YTktOWRlYy00NmIyLWE0ZmQtZDg2YjlmMzczZDZiXkEyXkFqcGdeQXVyNjg4NzAyOTA@._V1_.jpg",
+        },
+        {
+          title: "Mad Man",
+          id: "tt0804503",
+          img: "https://m.media-amazon.com/images/M/MV5BNTgxNDZlODQtNDcwOC00NWQ5LTljNWMtMDhjY2U5YTUzMTc4XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg",
+        },
+      ],
+      starWars: []
     };
   }
+
+  componentDidMount() {
+    console.log("componentDidMount")
+    fetch('https://swapi.dev/api/people/')
+      .then(response => response.json())
+      .then(res => this.setState({ starWars: res.results }));
+
+  }
+  componentDidUpdate() {
+    console.log("componentDidUpdate")
+    console.log(this.state.starWars)
+  }
+
   render() {
     return (
-      <div className="App" >
+      <div className='App'>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>{this.state.string}</p>
-          <button onClick={() => { this.setState({ string: 'Hello, React!' }) }}>Change Text</button>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h1>{this.state.Header}</h1>
+          {this.state.showList.map(show => (
+            <h4 key={show.title}> {show.title}</h4>
+          ))}
+          <CardList name={this.state.showList[1]} />
+          <button onClick={() => this.setState({ Header: "Movies" })}>Switch</button>
         </header>
       </div>
     );
