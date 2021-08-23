@@ -12,10 +12,9 @@ class App extends Component {
       starWars: [],
       searchField: ''
     };
+
   }
-  handleSearch() {
-    console.log("Search for: " + this.searchField)
-  }
+
 
   componentDidMount() {
     console.log("componentDidMount")
@@ -29,6 +28,11 @@ class App extends Component {
   //   console.log(this.state.starWars)
   // }
 
+  // use arrow function to bind this
+  handleSearch = (e) => {
+    this.setState({ searchField: e.target.value })
+  }
+
   render() {
     const { starWars, searchField } = this.state;
     const filteredStar = starWars.filter(star => {
@@ -38,10 +42,9 @@ class App extends Component {
     return (
       <div className='App' >
         <h1>{this.state.Header}</h1>
-        <SearchBox placeholder="search stars" handleChange={e => {
-          this.setState({ searchField: e.target.value },
-          );
-        }} />
+        <SearchBox placeholder="search stars"
+          handleChange={this.handleSearch}
+        />
 
         <CardList stars={filteredStar} />
       </div >
