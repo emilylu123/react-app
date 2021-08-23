@@ -8,7 +8,8 @@ function Card(props) {
         alt="star war"
         src={`https://robohash.org/${props.id}?set=set2&size=180x180`}
       />
-      <h1>{props.star.name}</h1>
+      <h3>{props.star.name}</h3>
+      <h4>{props.star.gender}</h4>
     </div>
   );
 }

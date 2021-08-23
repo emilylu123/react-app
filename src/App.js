@@ -23,10 +23,10 @@ class App extends Component {
       .then(res => this.setState({ starWars: res.results }));
 
   }
-  // componentDidUpdate() {
-  //   console.log("componentDidUpdate")
-  //   console.log(this.state.starWars)
-  // }
+  componentDidUpdate() {
+    console.log("componentDidUpdate")
+    console.log(this.state.starWars)
+  }
 
   // use arrow function to bind this
   handleSearch = (e) => {
